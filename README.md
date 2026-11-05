@@ -42,22 +42,23 @@ The Flask application exposes a `/health` endpoint that returns a JSON health st
 
 ### Flask Application Functionality & Health Verification
 
-The Python Flask application was developed as a lightweight HTTP workload to demonstrate automated container deployment and application health verification on AWS ECS Fargate.
+The project uses a lightweight Python Flask application as a test workload for an automated AWS ECS Fargate deployment pipeline.
 
-The application exposes a `/health` endpoint that returns a JSON response indicating its health status.
+The application exposes a `/health` endpoint that returns an HTTP response containing application health information.
 
-**Engineering Purpose:**
+**Purpose:**
+- Validate application functionality before deployment.
+- Demonstrate Docker containerization and deployment to ECS Fargate.
+- Provide a dedicated endpoint for basic HTTP health verification.
+- Establish a foundation for automated health checks and observability.
 
-- Validate that the Flask application starts and responds to HTTP requests after deployment.
-- Provide a test workload for the Docker, Amazon ECR, and ECS Fargate deployment pipeline.
-- Demonstrate application-level health verification through a dedicated HTTP endpoint.
-- Establish a foundation for future automated health checks and monitoring.
+**Testing:**
 
-**Validation:**
+Used `curl` locally to verify that the Flask application's `/health` endpoint responded successfully.
 
-After deployment, the `/health` endpoint was manually tested to confirm the application was accessible and responding successfully.
+**Future Improvements:**
 
-This project focused on demonstrating cloud infrastructure, container orchestration, and CI/CD automation rather than implementing complex business functionality.
+Configure the Application Load Balancer target group's health-check path to `/health` and integrate automated post-deployment health verification into the CI/CD pipeline.
 
 ## Troubleshooting & Lessons Learned
 
