@@ -39,3 +39,26 @@ The Flask application exposes a `/health` endpoint that returns a JSON health st
 ## Architecture Diagram
 
 ![AWS ECS Fargate Architecture](diagram1.png)
+
+## Troubleshooting & Lessons Learned
+
+### Issue: ECS Fargate Container Image Pull Failure
+
+**Problem:**
+
+During deployment, an ECS Fargate task encountered a `CannotPullContainerError`, preventing the application container from starting successfully.
+
+**Root Cause:**
+
+The ECS task execution role lacked the necessary IAM permissions to retrieve the container image from Amazon Elastic Container Registry (ECR).
+
+**Resolution:**
+
+Corrected the IAM permissions associated with the ECS task execution role to allow the required ECR image-pull operations.
+
+**Lessons Learned:**
+
+- Understood the importance of IAM permissions in ECS container deployments.
+- Learned the difference between the ECS task role and task execution role.
+- Gained experience troubleshooting container startup failures.
+- Reinforced the importance of least-privilege IAM access.
