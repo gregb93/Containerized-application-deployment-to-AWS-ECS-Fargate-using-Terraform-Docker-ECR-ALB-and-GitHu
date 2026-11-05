@@ -40,6 +40,25 @@ The Flask application exposes a `/health` endpoint that returns a JSON health st
 
 ![AWS ECS Fargate Architecture](diagram1.png)
 
+### Flask Application Functionality & Health Verification
+
+The Python Flask application was developed as a lightweight HTTP workload to demonstrate automated container deployment and application health verification on AWS ECS Fargate.
+
+The application exposes a `/health` endpoint that returns a JSON response indicating its health status.
+
+**Engineering Purpose:**
+
+- Validate that the Flask application starts and responds to HTTP requests after deployment.
+- Provide a test workload for the Docker, Amazon ECR, and ECS Fargate deployment pipeline.
+- Demonstrate application-level health verification through a dedicated HTTP endpoint.
+- Establish a foundation for future automated health checks and monitoring.
+
+**Validation:**
+
+After deployment, the `/health` endpoint was manually tested to confirm the application was accessible and responding successfully.
+
+This project focused on demonstrating cloud infrastructure, container orchestration, and CI/CD automation rather than implementing complex business functionality.
+
 ## Troubleshooting & Lessons Learned
 
 ### ECS Fargate — CannotPullContainerError
