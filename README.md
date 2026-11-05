@@ -35,3 +35,7 @@ GitHub Actions manages application deployments, while Terraform manages the ECS 
 ## Application Health Check
 
 The Flask application exposes a `/health` endpoint that returns a JSON health status. This endpoint was tested against the running ECS Fargate application.
+
+## Architecture Diagram
+
+![AWS ECS Fargate Architecture](diagram1.png)
