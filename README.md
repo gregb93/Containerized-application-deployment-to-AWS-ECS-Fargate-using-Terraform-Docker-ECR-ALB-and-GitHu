@@ -42,23 +42,23 @@ The Flask application exposes a `/health` endpoint that returns a JSON health st
 
 ## Troubleshooting & Lessons Learned
 
-### Issue: ECS Fargate Container Image Pull Failure
+### ECS Fargate — CannotPullContainerError
 
-**Problem:**
+**Problem**
 
-During deployment, an ECS Fargate task encountered a `CannotPullContainerError`, preventing the application container from starting successfully.
+During deployment of the containerized Flask application, an ECS Fargate task encountered a `CannotPullContainerError`, preventing the container from starting.
 
-**Root Cause:**
+**Root Cause**
 
-The ECS task execution role lacked the necessary IAM permissions to retrieve the container image from Amazon Elastic Container Registry (ECR).
+The ECS task execution role lacked the necessary IAM permissions to pull the Docker image from Amazon Elastic Container Registry (ECR).
 
-**Resolution:**
+**Resolution**
 
-Corrected the IAM permissions associated with the ECS task execution role to allow the required ECR image-pull operations.
+Attached the AWS-managed `AmazonECSTaskExecutionRolePolicy` to the ECS task execution role, granting the permissions required to authenticate with ECR and retrieve the container image.
 
-**Lessons Learned:**
+**Lessons Learned**
 
-- Understood the importance of IAM permissions in ECS container deployments.
-- Learned the difference between the ECS task role and task execution role.
-- Gained experience troubleshooting container startup failures.
-- Reinforced the importance of least-privilege IAM access.
+- **IAM troubleshooting:** Learned how missing permissions can prevent ECS tasks from starting.
+- **Task role vs. execution role:** Understood that the task execution role allows ECS to perform operations such as pulling images and sending logs to CloudWatch, while the task role grants permissions to application code running inside the container.
+- **ECR integration:** Strengthened understanding of how ECS Fargate authenticates with Amazon ECR.
+- **Deployment reliability:** Recognized the importance of validating IAM permissions when troubleshooting container startup failures.
